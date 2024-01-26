@@ -41,7 +41,7 @@ class MobileDownloaderManager implements DownloadManager {
     // AnyTime was close or in the background.
     if (tasks != null && tasks.isNotEmpty) {
       for (var t in tasks) {
-        _updateDownloadState(id: t.taskId, progress: t.progress, status: t.status.value);
+        _updateDownloadState(id: t.taskId, progress: t.progress, status: t.status.index);
 
         /// If we are not queued or running we can safely clean up this event
         if (t.status != DownloadTaskStatus.enqueued && t.status != DownloadTaskStatus.running) {
@@ -84,7 +84,7 @@ class MobileDownloaderManager implements DownloadManager {
   void _updateDownloadState({required String id, required int progress, required int status}) {
     var state = DownloadState.none;
     var updateTime = DateTime.now().millisecondsSinceEpoch;
-    var downloadStatus = DownloadTaskStatus(status);
+    var downloadStatus = DownloadTaskStatus.fromInt(status);
 
     if (downloadStatus == DownloadTaskStatus.enqueued) {
       state = DownloadState.queued;
@@ -113,7 +113,7 @@ class MobileDownloaderManager implements DownloadManager {
   }
 
   @pragma('vm:entry-point')
-  static void downloadCallback(String id, DownloadTaskStatus status, int progress) {
-    IsolateNameServer.lookupPortByName('downloader_send_port')?.send([id, status.value, progress]);
+  static void downloadCallback(String id, int status, int progress) {
+    IsolateNameServer.lookupPortByName('downloader_send_port')?.send([id, status, progress]);
   }
 }

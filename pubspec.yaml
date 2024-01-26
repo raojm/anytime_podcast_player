@@ -19,7 +19,7 @@ dependencies:
   extended_image: ^8.2.0
   file_picker: ^6.1.1
   flutter_dialogs: ^3.0.0
-  flutter_downloader: 1.10.1+2
+  flutter_downloader: ^1.11.6
   flutter_html: ^3.0.0-beta.2
   flutter_html_svg: ^3.0.0-beta.2
   flutter_html_table: ^3.0.0-beta.2
@@ -45,7 +45,6 @@ dependencies:
   share_plus: ^7.2.1
   shared_preferences: ^2.2.2
   sliver_tools: ^0.2.12
-  uni_links: ^0.5.1
   url_launcher: ^6.1.12
   xml: 6.5.0
 
@@ -54,6 +53,12 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   collection: ^1.17.2
+#  uni_links_desktop: ^0.1.7
+  background_downloader: ^8.1.0
+  uni_links:
+    git:
+      url: https://github.com/DanMossa/uni_links.git
+      path: uni_links/
 
 dev_dependencies:
   mockito: ^5.2.0
