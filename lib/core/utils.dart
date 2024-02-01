@@ -27,7 +27,7 @@ Future<String> resolvePath(Episode episode) async {
 }
 
 Future<String> resolveDirectory({required Episode episode, bool full = false}) async {
-  if (full || Platform.isAndroid) {
+  if (full || Platform.isAndroid || Platform.isWindows) {
     return Future.value(join(await getStorageDirectory(), safePath(episode.podcast!)));
   }
 

@@ -485,6 +485,7 @@ class DefaultAudioPlayerService extends AudioPlayerService {
       return previousState.playing == currentState.playing &&
           previousState.processingState == currentState.processingState;
     }).listen((PlaybackState state) {
+      log.info('received playbackState:  $state ');
       switch (state.processingState) {
         case AudioProcessingState.idle:
           _playingState.add(AudioState.none);
@@ -838,6 +839,7 @@ class _DefaultAudioPlayerHandler extends BaseAudioHandler with SeekHandler {
       if (playbackState.isClosed) {
         log.warning('WARN: Playback state is already closed.');
       } else {
+        log.info('added playbackState:  $data ');
         playbackState.add(data);
       }
     }).onError((error) {
@@ -864,7 +866,7 @@ class _DefaultAudioPlayerHandler extends BaseAudioHandler with SeekHandler {
 
     var source = downloaded
         ? AudioSource.uri(
-            Uri.parse("file://${mediaItem.id}"),
+            Uri.parse("file:///${mediaItem.id}"),
             tag: mediaItem.id,
           )
         : AudioSource.uri(Uri.parse(mediaItem.id), tag: mediaItem.id);

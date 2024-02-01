@@ -20,7 +20,7 @@ import 'package:anytime/state/episode_state.dart';
 import 'package:collection/collection.dart' show IterableExtension;
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_downloader/flutter_downloader.dart';
+import 'package:background_downloader/background_downloader.dart';
 import 'package:intl/intl.dart';
 import 'package:logging/logging.dart';
 import 'package:path/path.dart';
@@ -497,7 +497,8 @@ class MobilePodcastService extends PodcastService {
         episode.played = true;
       }
     } else if (episode.downloadState == DownloadState.downloading && episode.downloadPercentage! < 100) {
-      await FlutterDownloader.cancel(taskId: episode.downloadTaskId!);
+      // await FlutterDownloader.cancel(taskId: episode.downloadTaskId!);
+      FileDownloader().cancelTaskWithId(episode.downloadTaskId!);
     }
 
     episode.downloadTaskId = null;

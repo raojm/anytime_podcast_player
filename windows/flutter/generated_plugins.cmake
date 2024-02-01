@@ -4,8 +4,10 @@
 
 list(APPEND FLUTTER_PLUGIN_LIST
   connectivity_plus
+  just_audio_windows
   permission_handler_windows
   share_plus
+  uni_links_desktop
   url_launcher_windows
 )
 
